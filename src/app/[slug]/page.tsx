@@ -30,13 +30,7 @@ export default async function PostPage({
         ← Back to posts
       </Link>
       {postImageUrl && (
-        <img
-          src={postImageUrl}
-          alt={post.title}
-          className="aspect-video rounded-xl"
-          width="100%"
-         
-        />
+        <img src={postImageUrl} alt={post.title} className="aspect-video rounded-xl" width="100%"/>
       )}
       <h1 className="text-4xl font-bold mb-8">{post.title}</h1>
       <div className="prose">

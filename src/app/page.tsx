@@ -3,7 +3,7 @@ import { type SanityDocument } from "next-sanity";
 
 import { client } from "@/sanity/client";
 
-const POSTS_QUERY = `*[_type == "post" && defined(slug.current)]|order(publishedAt desc)[0...12]{_id, title, slug, "categoryName": category->name, publishedAt}`;
+const POSTS_QUERY = `*[_type == "post" && defined(slug.current)]|order(publishedAt desc)[0...12]{_id, title, image, slug, "categoryName": category->name, publishedAt}`;
 
 const options = { next: { revalidate: 30 } };
 
@@ -36,6 +36,7 @@ export default async function IndexPage() {
                                     <div className="swiper" data-uc-swiper="items: 1; gap: 16; dots: .dot-nav; next: .nav-next; prev: .nav-prev; disable-class: d-none;" data-uc-swiper-s="items: 3; gap: 24;" data-uc-swiper-l="items: 4; gap: 24;">
                                         <div className="swiper-wrapper">
                                         {posts.slice(0, 5).map((post) => (
+                                            console.log(post),
                                             <div className="swiper-slide">
                                                 <div>
                                                     <article className="post type-post panel uc-transition-toggle gap-2">
@@ -43,7 +44,8 @@ export default async function IndexPage() {
                                                             <div className="col-auto">
                                                                 <div className="post-media panel overflow-hidden max-w-64px min-w-64px">
                                                                     <div className="featured-image bg-gray-25 dark:bg-gray-800 ratio ratio-1x1">
-                                                                        <img className="media-cover image uc-transition-scale-up uc-transition-opaque" src="../assets/images/common/img-fallback.png" data-src="../assets/images/demo-seven/posts/img-09.jpg" alt="Hidden Gems: Underrated Travel Destinations Around the World" data-uc-img="loading: lazy"/>
+                                                                    <img alt={post.title} src={`https://cdn.sanity.io/images/k94um126/production/${post.image.asset._ref}`} className="aspect-video rounded-xl" width="100%"/>
+                                                                      
                                                                     </div>
                                                                     <a href="blog-details.html" className="position-cover"></a>
                                                                 </div>
@@ -51,7 +53,7 @@ export default async function IndexPage() {
                                                             <div>
                                                                 <div className="post-header panel vstack justify-between gap-1">
                                                                     <h3 className="post-title h6 m-0 text-truncate-2">
-                                                                        <a className="text-none hover:text-primary duration-150" href={`/${post.slug.current}`}>Hidden Gems: Underrated Travel Destinations Around the World</a>
+                                                                        <a className="text-none hover:text-primary duration-150" href={`/${post.slug.current}`}>{post.title}</a>
                                                                     </h3>
                                                                 </div>
                                                             </div>
