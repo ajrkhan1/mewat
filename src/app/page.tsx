@@ -1,14 +1,24 @@
 import Link from "next/link";
 import { type SanityDocument } from "next-sanity";
-
+import Image from 'next/image'
 import { client } from "@/sanity/client";
+import imageUrlBuilder from '@sanity/image-url'
+import { apiVersion, dataset, projectId } from "@/sanity/env";
+import { urlFor } from "@/sanity/lib/client";
+
 
 const POSTS_QUERY = `*[_type == "post" && defined(slug.current)]|order(publishedAt desc)[0...12]{_id, title, image, slug, "categoryName": category->name, publishedAt}`;
 
+
+
 const options = { next: { revalidate: 30 } };
+
+
 
 export default async function IndexPage() {
   const posts = await client.fetch<SanityDocument[]>(POSTS_QUERY, {}, options);
+ 
+    
 
   return (
     <>
@@ -44,8 +54,7 @@ export default async function IndexPage() {
                                                             <div className="col-auto">
                                                                 <div className="post-media panel overflow-hidden max-w-64px min-w-64px">
                                                                     <div className="featured-image bg-gray-25 dark:bg-gray-800 ratio ratio-1x1">
-                                                                    <img alt={post.title} src={`https://cdn.sanity.io/images/k94um126/production/${post.image.asset._ref}`} className="aspect-video rounded-xl" width="100%"/>
-                                                                      
+                                                                    <img src={urlFor(post.image).url()} className="aspect-video rounded-xl" />            
                                                                     </div>
                                                                     <a href="blog-details.html" className="position-cover"></a>
                                                                 </div>
