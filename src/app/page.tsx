@@ -1,9 +1,6 @@
 import Link from "next/link";
 import { type SanityDocument } from "next-sanity";
-import Image from 'next/image'
 import { client } from "@/sanity/client";
-import imageUrlBuilder from '@sanity/image-url'
-import { apiVersion, dataset, projectId } from "@/sanity/env";
 import { urlFor } from "@/sanity/lib/client";
 
 
