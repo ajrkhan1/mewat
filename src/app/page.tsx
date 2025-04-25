@@ -46,14 +46,7 @@ export default async function IndexPage() {
                                                                 <div className="post-media panel overflow-hidden max-w-64px min-w-64px">
                                                                     <div className="featured-image bg-gray-25 dark:bg-gray-800 ratio ratio-1x1">
                                                                     <img alt={post.title} src={post.image} className="aspect-video rounded-xl" width="100%"/>
-                                                                    <Image
-              src={image}
-              width={250}
-              height={350}
-              sizes="(max-width: 640px) 100px"
-              alt='Image of Brooke'
-              className='w-20 md:w-40 lg:w-48 mb-10 md:mb-0 mt-10 md:mt-20 object-contain'
-            />
+                                                                    
                                                                     </div>
                                                                     <a href="blog-details.html" className="position-cover"></a>
                                                                 </div>
