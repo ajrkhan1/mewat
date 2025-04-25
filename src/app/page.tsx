@@ -9,17 +9,9 @@ const POSTS_QUERY = `*[_type == "post" && defined(slug.current)]|order(published
 const options = { next: { revalidate: 30 } };
 const builder = imageUrlBuilder(client)
 
-export default async function IndexPage({ ...props }: {
-    heading: string
-    paragraph: string
-    image: string
-    btnText: string
-    btnDestination: string
-  }) {
+export default async function IndexPage() {
   const posts = await client.fetch<SanityDocument[]>(POSTS_QUERY, {}, options);
-  const { heading, paragraph, image, btnText, btnDestination } = props
-    
-
+ 
   return (
     <>
     {/* <main className="container mx-auto min-h-screen max-w-3xl p-8">
