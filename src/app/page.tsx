@@ -107,7 +107,6 @@
 
 
 
-import Link from "next/link";
 import { type SanityDocument } from "next-sanity";
 import { client } from "@/sanity/client";
 import { urlFor } from "@/sanity/lib/client";
@@ -128,6 +127,15 @@ export default async function IndexPage() {
 
   return (
     <>
+
+
+{posts.slice(0, 5).map((post) => (
+                                            console.log(post),
+                                            
+                         <img src={urlFor(post.image).url()} className="aspect-video rounded-xl" />            
+                                                                    
+                                            ))}
+
     {/* <main className="container mx-auto min-h-screen max-w-3xl p-8">
       <h1 className="text-4xl font-bold mb-8">Posts</h1>
       <ul className="flex flex-col gap-y-4">
@@ -142,7 +150,10 @@ export default async function IndexPage() {
         ))}
       </ul>
     </main> */}
-    <div id="wrapper" className="wrap overflow-hidden-x">
+
+
+
+    {/* <div id="wrapper" className="wrap overflow-hidden-x">
     <div className="section panel overflow-hidden swiper-parent border-top">
                 <div className="section-outer panel py-2 lg:py-4 dark:text-white">
                     <div className="container max-w-xl">
@@ -191,7 +202,7 @@ export default async function IndexPage() {
                     </div>
                 </div>
             </div>
-    </div>
+    </div> */}
     </>
   );
 }
